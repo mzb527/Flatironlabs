@@ -1,0 +1,39 @@
+
+BEGIN SavingsTrackingSystem
+
+    // Function: Create A Long Term Savings Goal
+    FUNCTION CreateGoal(User_ID, Target_Amount, Target_Date)
+        STORE User_ID, Target_Amount, Target_Date IN Savings_Goal
+        RETURN "Savings goal created successfully"
+    END FUNCTION
+
+    // Function: Update Savings Progress
+    FUNCTION UpdateProgress(User_ID, Amount_Saved)
+        FIND Savings_Goal BY User_ID
+        UPDATE Savings_Goal.Amount_Saved WITH Amount_Saved
+        RETURN "Progress updated successfully"
+    END FUNCTION
+
+    // Function: Check Savings Goal Status
+    FUNCTION CheckStatus(User_ID)
+        FIND Savings_Goal BY User_ID
+        CALCULATE Progress = (Amount_Saved / Target_Amount) * 100
+        IF Progress >= 100 THEN
+            RETURN "Goal achieved"
+        ELSE
+            RETURN "On track" OR "Behind schedule" BASED ON Target_Date
+        END IF
+    END FUNCTION
+
+    // Function: Notify User
+    FUNCTION NotifyUser(User_ID)
+        Status = CheckStatus(User_ID)
+        IF Status IS "Behind schedule" THEN
+            COMPOSE Message = "Savings are not on pace with goals."
+        ELSE
+            COMPOSE Message = "Savings are on pace with goals."
+        END IF
+        SEND Message TO User_ID
+    END FUNCTION
+
+END SavingsTrackingSystem
