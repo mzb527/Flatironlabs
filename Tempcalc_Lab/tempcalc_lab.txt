@@ -1,0 +1,59 @@
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class TemperaturePageGenerator {
+    public static void main(String[] args) {
+        // Step 1: Define Temperature Data
+        double[] tempsF = {32, 70, 80, 72, 68, 75, 82, 65, 77, 78, 73, 79, 71, 74, 76};
+        double[] tempsC = {25, 18, 15, 28, 20, 23, 30, 22, 26, 24, 21, 27, 19, 17, 29};
+
+        // Step 2: Convert Temperatures
+        double[] tempsCConverted = new double[tempsF.length];
+        double[] tempsFConverted = new double[tempsC.length];
+        
+        for (int i = 0; i < tempsF.length; i++) {
+            tempsCConverted[i] = (tempsF[i] - 32) * 5 / 9; // Fahrenheit to Celsius
+        }
+        for (int i = 0; i < tempsC.length; i++) {
+            tempsFConverted[i] = (tempsC[i] * 9 / 5) + 32; // Celsius to Fahrenheit
+        }
+
+        // Step 3: Calculate Totals and Averages
+        double totTemperatureInFahrenheit = 0;
+        double totTemperatureInCelsius = 0;
+        
+        for (double tempF : tempsF) {
+            totTemperatureInFahrenheit += tempF;
+        }
+        for (double tempC : tempsC) {
+            totTemperatureInCelsius += tempC;
+        }
+        for (double tempCConv : tempsCConverted) {
+            totTemperatureInCelsius += tempCConv;
+        }
+        for (double tempFConv : tempsFConverted) {
+            totTemperatureInFahrenheit += tempFConv;
+        }
+
+        int totalDataPoints = tempsF.length + tempsC.length;
+        double avgTemperatureInFahrenheit = totTemperatureInFahrenheit / totalDataPoints;
+        double avgTemperatureInCelsius = totTemperatureInCelsius / totalDataPoints;
+
+        // Step 4: Generate the HTML Page
+        String htmlContent = "<!DOCTYPE html>\n<html>\n<head>\n<title>Temperature Data</title>\n</head>\n<body>\n" +
+                             "<h1>Temperature Data</h1>\n" +
+                             "<p>Total Temperature in Fahrenheit: " + totTemperatureInFahrenheit + "</p>\n" +
+                             "<p>Total Temperature in Celsius: " + totTemperatureInCelsius + "</p>\n" +
+                             "<p>Average Temperature in Fahrenheit: " + avgTemperatureInFahrenheit + "</p>\n" +
+                             "<p>Average Temperature in Celsius: " + avgTemperatureInCelsius + "</p>\n" +
+                             "</body>\n</html>";
+
+        try (FileWriter writer = new FileWriter("temperatureData.html")) {
+            writer.write(htmlContent);
+            System.out.println("HTML page generated successfully!");
+        } catch (IOException e) {
+            System.out.println("An error occurred while generating the HTML page.");
+            e.printStackTrace();
+        }
+    }
+}
