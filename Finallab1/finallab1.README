@@ -1,0 +1,3 @@
+This application is used for one of the four basic calculation functions, as well as storing the result.
+It has several failsafes for input error, such as 0=null, and ensuring the value is a number.    
+A possible upgrade in the future would be to complete multiple functions at a time, such as 10 - 7 * 8.

@@ -1,0 +1,56 @@
+/*
+ * Helper function to validate inputs
+ * Ensures both inputs are numbers.
+ */
+function isValidNumber(a, b) {
+  if (typeof a !== "number" || typeof b !== "number") {
+    console.log("Error: Both inputs must be numbers.");
+    return false;
+  }
+  return true;
+}
+
+/*
+ * Updated addition function with input validation
+ */
+function add(a, b) {
+  if (!isValidNumber(a, b)) return null; // Check for invalid inputs
+  const result = a + b;
+  addToHistory(a, b, "+", result);
+  return result;
+}
+
+/*
+ * Updated subtraction function with input validation
+ */
+function subtract(a, b) {
+  if (!isValidNumber(a, b)) return null; // Check for invalid inputs
+  const result = a - b;
+  addToHistory(a, b, "-", result);
+  return result;
+}
+
+/*
+ * Updated multiplication function with input validation
+ */
+function multiply(a, b) {
+  if (!isValidNumber(a, b)) return null; // Check for invalid inputs
+  const result = a * b;
+  addToHistory(a, b, "*", result);
+  return result;
+}
+
+/*
+ * Updated division function with input validation
+ * Includes a check for division by zero.
+ */
+function divide(a, b) {
+  if (!isValidNumber(a, b)) return null; // Check for invalid inputs
+  if (b === 0) {
+    console.log("Error: Division by zero is not allowed.");
+    return null;
+  }
+  const result = a / b;
+  addToHistory(a, b, "/", result);
+  return result;
+}
