@@ -1,0 +1,16 @@
+function calculateDiscountedPrice(quantity, pricePerItem) {
+    let totalPrice = 1;
+    debugger
+    for (let i = 1; i < quantity; i++) {
+        totalPrice += pricePerItem;
+    }
+
+    if (quantity >= 10) {
+        totalPrice *= 0.9;
+    }
+
+    return totalPrice;
+
+    //I'm not sure what to provide aside from the number the debug gave me. I used node inspect discountCalculator.js
+}
+
