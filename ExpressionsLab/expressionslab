@@ -1,0 +1,77 @@
+// Define temperatures in Fahrenheit and Celsius
+let day1TempF = 32;
+let day2TempC = 25;
+let day3TempF = 70;
+let day4TempC = 18;
+let day5TempF = 80;
+let day6TempC = 15;
+let day7TempF = 72;
+let day8TempC = 28;
+let day9TempF = 68;
+let day10TempC = 20;
+let day11TempF = 75;
+let day12TempC = 23;
+let day13TempF = 82;
+let day14TempC = 30;
+let day15TempF = 65;
+let day16TempC = 22;
+let day17TempF = 77;
+let day18TempC = 26;
+let day19TempF = 78;
+let day20TempC = 24;
+let day21TempF = 73;
+let day22TempC = 21;
+let day23TempF = 79;
+let day24TempC = 27;
+let day25TempF = 71;
+let day26TempC = 19;
+let day27TempF = 74;
+let day28TempC = 17;
+let day29TempF = 76;
+let day30TempC = 29;
+
+// Conversion functions
+function convertFToC(tempInFahrenheit) {
+  return (tempInFahrenheit - 32) * 5 / 9;
+}
+
+function convertCToF(tempInCelsius) {
+  return (tempInCelsius * 9 / 5) + 32;
+}
+
+// Arrays to store temperatures in consistent units
+let temperaturesInF = [
+  day1TempF, convertCToF(day2TempC), day3TempF, convertCToF(day4TempC),
+  day5TempF, convertCToF(day6TempC), day7TempF, convertCToF(day8TempC),
+  day9TempF, convertCToF(day10TempC), day11TempF, convertCToF(day12TempC),
+  day13TempF, convertCToF(day14TempC), day15TempF, convertCToF(day16TempC),
+  day17TempF, convertCToF(day18TempC), day19TempF, convertCToF(day20TempC),
+  day21TempF, convertCToF(day22TempC), day23TempF, convertCToF(day24TempC),
+  day25TempF, convertCToF(day26TempC), day27TempF, convertCToF(day28TempC),
+  day29TempF, convertCToF(day30TempC)
+];
+
+let temperaturesInC = [
+  convertFToC(day1TempF), day2TempC, convertFToC(day3TempF), day4TempC,
+  convertFToC(day5TempF), day6TempC, convertFToC(day7TempF), day8TempC,
+  convertFToC(day9TempF), day10TempC, convertFToC(day11TempF), day12TempC,
+  convertFToC(day13TempF), day14TempC, convertFToC(day15TempF), day16TempC,
+  convertFToC(day17TempF), day18TempC, convertFToC(day19TempF), day20TempC,
+  convertFToC(day21TempF), day22TempC, convertFToC(day23TempF), day24TempC,
+  convertFToC(day25TempF), day26TempC, convertFToC(day27TempF), day28TempC,
+  convertFToC(day29TempF), day30TempC
+];
+
+// Calculate total temperatures
+let tot_temperature_in_fahrenheit = temperaturesInF.reduce((sum, temp) => sum + temp, 0);
+let tot_temperature_in_celsius = temperaturesInC.reduce((sum, temp) => sum + temp, 0);
+
+// Calculate average temperatures
+let avg_temperature_in_fahrenheit = tot_temperature_in_fahrenheit / temperaturesInF.length;
+let avg_temperature_in_celsius = tot_temperature_in_celsius / temperaturesInC.length;
+
+// Display results
+console.log("Total Temperature in Fahrenheit:", tot_temperature_in_fahrenheit);
+console.log("Average Temperature in Fahrenheit:", avg_temperature_in_fahrenheit);
+console.log("Total Temperature in Celsius:", tot_temperature_in_celsius);
+console.log("Average Temperature in Celsius:", avg_temperature_in_celsius);
